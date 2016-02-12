@@ -68,26 +68,26 @@ public class ModelIterator {
 		}
 		else
 		{
-			String afterkey = ss[0] + " " + ss[1];
+			String afterkey = ss[1] + " " + ss[2];
 			if (key == null)
 			{
-				predict.add(ss[2]);
-				prob.add(Double.parseDouble(ss[3]));
+				predict.add(ss[3]);
+				prob.add(Double.parseDouble(ss[0]));
 				return afterkey;
 			}
 			else
 			{
 				if (key.equals(afterkey))
 				{
-					predict.add(ss[2]);
-					prob.add(Double.parseDouble(ss[3]));
+					predict.add(ss[3]);
+					prob.add(Double.parseDouble(ss[0]));
 					return key;
 				}
 				else
 				{
 					PutToAero(key, predict, prob);
-					predict.add(ss[2]);
-					prob.add(Double.parseDouble(ss[3]));
+					predict.add(ss[3]);
+					prob.add(Double.parseDouble(ss[0]));
 					return afterkey;
 				}
 			}
