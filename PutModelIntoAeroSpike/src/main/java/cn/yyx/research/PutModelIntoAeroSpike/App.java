@@ -13,7 +13,7 @@ public class App
     {
         AeroHelper.ANewClient(1, new Parameters("127.0.0.1", 3000, null, null, "test", "demoset"));
         try {
-			AeroHelper.testListStrings(1, "", "", "");
+			AeroHelper.testListStrings(1, "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

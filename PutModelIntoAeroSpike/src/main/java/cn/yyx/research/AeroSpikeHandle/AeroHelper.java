@@ -24,28 +24,39 @@ public class AeroHelper {
 		acm.CloseClient(id);
 	}
 
-	public static void testListStrings(Integer id, String key1, String key2, String value) throws Exception {
+	public static void testListStrings(Integer id, String value) throws Exception {
 		console.info("Read/Write ArrayList<String>");
 		AerospikeClient client = acm.GetClient(id);
 		Parameters params = acm.GetParameters(id);
-		Key key = new Key(params.namespace, params.set, "listkey1");
+		Key key2 = new Key(params.namespace, params.set, "listkey1");
+		client.delete(params.writePolicy, key2);
+
+		ArrayList<String> list2 = new ArrayList<String>();
+		list2.add("string1");
+		list2.add("string2");
+		list2.add("string3");
+
+		Bin bin2 = new Bin("listbin1", list2);
+		client.put(params.writePolicy, key2, bin2);
+		
+		Key key = new Key(params.namespace, params.set, "listkey2");
 		client.delete(params.writePolicy, key);
 
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("string1");
-		list.add("string2");
-		list.add("string3");
+		list.add("string4");
+		list.add("string5");
+		list.add("string6");
 
-		Bin bin = new Bin(params.getBinName("listbin1"), list);
+		Bin bin = new Bin("listbin1", list);
 		client.put(params.writePolicy, key, bin);
 
 		Record record = client.get(params.policy, key, bin.name);
 		List<?> receivedList = (List<?>) record.getValue(bin.name);
 
 		ValidateHelper.validateSize(3, receivedList.size());
-		ValidateHelper.validate("string1", receivedList.get(0));
-		ValidateHelper.validate("string2", receivedList.get(1));
-		ValidateHelper.validate("string3", receivedList.get(2));
+		ValidateHelper.validate("string4", receivedList.get(0));
+		ValidateHelper.validate("string5", receivedList.get(1));
+		ValidateHelper.validate("string6", receivedList.get(2));
 
 		console.info("Read/Write ArrayList<String> successful.");
 	}

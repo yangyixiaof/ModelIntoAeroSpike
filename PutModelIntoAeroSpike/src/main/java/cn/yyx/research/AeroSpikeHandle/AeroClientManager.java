@@ -3,15 +3,15 @@ package cn.yyx.research.AeroSpikeHandle;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.aerospike.client.async.AsyncClient;
-import com.aerospike.client.async.AsyncClientPolicy;
+import com.aerospike.client.AerospikeClient;
+import com.aerospike.client.policy.ClientPolicy;
 
 public class AeroClientManager {
 	
-	Map<Integer, AsyncClient> clientManager = new TreeMap<Integer, AsyncClient>();
+	Map<Integer, AerospikeClient> clientManager = new TreeMap<Integer, AerospikeClient>();
 	Map<Integer, Parameters> paramManager = new TreeMap<Integer, Parameters>();
 	
-	public AsyncClient GetClient(Integer id)
+	public AerospikeClient GetClient(Integer id)
 	{
 		return clientManager.get(id);
 	}
@@ -26,24 +26,15 @@ public class AeroClientManager {
 	
 	public void ANewClient(Integer id, Parameters params)
 	{
-		AsyncClientPolicy policy = new AsyncClientPolicy();
+		ClientPolicy policy = new ClientPolicy();
 		policy.user = params.user;
 		policy.password = params.password;
-		policy.asyncMaxCommands = 300;
-		policy.asyncSelectorThreads = 1;
-		policy.asyncSelectorTimeout = 10;
 		policy.failIfNotConnected = true;
 		
-		params.policy = policy.asyncReadPolicyDefault;
-		params.writePolicy = policy.asyncWritePolicyDefault;
+		params.policy = policy.readPolicyDefault;
+		params.writePolicy = policy.writePolicyDefault;
 		
-		AsyncClient client = new AsyncClient(policy, params.host, params.port);
-
-		try {
-			params.setServerSpecific(client);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		AerospikeClient client = new AerospikeClient(policy, params.host, params.port);
 		
 		clientManager.put(id, client);
 		paramManager.put(id, params);
