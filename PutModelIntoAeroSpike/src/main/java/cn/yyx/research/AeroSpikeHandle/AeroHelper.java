@@ -23,12 +23,18 @@ public class AeroHelper {
 	{
 		acm.CloseClient(id);
 	}
+	
+	public static void PutIntoAero(Integer id, Key key, Bin bin1, Bin bin2)
+	{
+		AerospikeClient client = acm.GetClient(id);
+		client.put(null, key, bin1, bin2);
+	}
 
-	public static void testListStrings(Integer id, String value) throws Exception {
+	public static void testListStrings(Integer id) throws Exception {
 		console.info("Read/Write ArrayList<String>");
 		AerospikeClient client = acm.GetClient(id);
 		Parameters params = acm.GetParameters(id);
-		Key key2 = new Key(params.namespace, params.set, "listkey1");
+		Key key2 = new Key(params.getNamespace(), params.getSet(), "listkey1");
 		client.delete(params.writePolicy, key2);
 
 		ArrayList<String> list2 = new ArrayList<String>();
@@ -39,7 +45,7 @@ public class AeroHelper {
 		Bin bin2 = new Bin("listbin1", list2);
 		client.put(params.writePolicy, key2, bin2);
 		
-		Key key = new Key(params.namespace, params.set, "listkey2");
+		Key key = new Key(params.getNamespace(), params.getSet(), "listkey2");
 		client.delete(params.writePolicy, key);
 
 		ArrayList<String> list = new ArrayList<String>();

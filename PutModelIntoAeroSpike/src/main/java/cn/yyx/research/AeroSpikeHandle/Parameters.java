@@ -27,8 +27,8 @@ public class Parameters {
 	int port;
 	String user;
 	String password;
-	String namespace;
-	String set;
+	private String namespace;
+	private String set;
 	WritePolicy writePolicy;
 	Policy policy;
 	boolean singleBin;
@@ -38,16 +38,32 @@ public class Parameters {
 		this.port = port;
 		this.user = user;
 		this.password = password;
-		this.namespace = namespace;
-		this.set = set;
+		this.setNamespace(namespace);
+		this.setSet(set);
 	}
 	
 	@Override
 	public String toString() {
 		return "Parameters: host=" + host + 
 				" port=" + port + 
-				" ns=" + namespace + 
-				" set=" + set;
+				" ns=" + getNamespace() + 
+				" set=" + getSet();
+	}
+
+	public String getNamespace() {
+		return namespace;
+	}
+
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
+
+	public String getSet() {
+		return set;
+	}
+
+	public void setSet(String set) {
+		this.set = set;
 	}
 	
 }
