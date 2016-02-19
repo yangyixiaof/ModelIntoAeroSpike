@@ -10,6 +10,7 @@
 -7.239256       MI@_2inverse(this,$C0?0,$C0?0,$C0?0,$C0?1)@)
 -7.239256       MI@_2(@PE)      -0.1576793
 -7.468491       MI@_2(@PE);     -0.16385
+-7.239256       VD@PredicatedRuleCallElements   -0.3037319
 \2-grams:
 
 -0.5026901      A@a0.int10=1; A@a1.int10=2;
