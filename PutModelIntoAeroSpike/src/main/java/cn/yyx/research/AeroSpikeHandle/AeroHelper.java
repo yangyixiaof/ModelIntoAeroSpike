@@ -24,10 +24,18 @@ public class AeroHelper {
 		acm.CloseClient(id);
 	}
 	
-	public static void PutIntoAero(Integer id, Key key, Bin bin1, Bin bin2)
+	public static void PutIntoAero(Integer id, String key, Bin bin1)
 	{
 		AerospikeClient client = acm.GetClient(id);
-		client.put(null, key, bin1, bin2);
+		Parameters param = acm.GetParameters(id);
+		client.put(null, new Key(param.getNamespace(), param.getSet(), key), bin1);
+	}
+	
+	public static void PutIntoAero(Integer id, String key, Bin bin1, Bin bin2)
+	{
+		AerospikeClient client = acm.GetClient(id);
+		Parameters param = acm.GetParameters(id);
+		client.put(null, new Key(param.getNamespace(), param.getSet(), key), bin1, bin2);
 	}
 
 	public static void testListStrings(Integer id) throws Exception {

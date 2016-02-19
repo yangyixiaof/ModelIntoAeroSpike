@@ -4,22 +4,27 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import com.aerospike.client.Bin;
-import com.aerospike.client.Key;
 
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
-import cn.yyx.research.AeroSpikeHandle.Parameters;
 
 public class ModelIterator {
 	
-	File file = null;
-	public static final int putAllLineNum = 10;
-	Parameters param = null;
+	// if -1, infinite.
+	public static final int MaxPutAllLineNum = 10;
+	public static final int MaxMethodSimilarNum = 50;
 	
-	public ModelIterator(String filepath, Parameters param) {
+	public static final String BinSimilarName = "similar";
+	public static final String BinPredictName = "predict";
+	public static final String BinProbabilityName = "probability";
+	
+	File file = null;
+	
+	public ModelIterator(String filepath) {
 		file = new File(filepath);
-		this.param = param;
 	}
 	
 	public void IterateFile() {
@@ -28,6 +33,8 @@ public class ModelIterator {
 			String oneline = null;
 			int line = 0;
 			int allline = 0;
+			int minimal = 1;
+			Queue<ModelQueueMember> priorityQueue =  new PriorityQueue<ModelQueueMember>();
 			String key = null;
 			ArrayList<String> predict = new ArrayList<String>();
 			ArrayList<Double> prob = new ArrayList<Double>();
@@ -35,59 +42,132 @@ public class ModelIterator {
 			{
 				allline++;
 				oneline = oneline.trim();
+				
+				if (oneline.equals("\\1-grams:"))
+				{
+					minimal = 2;
+				}
+				else
+				{
+					if (oneline.equals("\\2-grams:"))
+					{
+						DoGramWork(key, null, null, priorityQueue, null, minimal);
+						minimal = 3;
+					}
+					else
+					{
+						if (oneline.equals("\\3-grams:"))
+						{
+							key = DoGramWork(key, predict, prob, null, null, minimal);
+							minimal = 4;
+						}
+					}
+				}
+				
 				String[] ss = oneline.split("\\s+");
-				if (ss.length == 4)
+				if (ss.length >= 2)
 				{
 					line++;
 					System.out.println("current aline:"+allline + ";valid-line:"+line);
-					key = DoWork(key, predict, prob, ss);
-					if (putAllLineNum > 0)
+					key = DoGramWork(key, predict, prob, null, ss, minimal);
+					if (MaxPutAllLineNum > 0)
 					{
-						if (line > putAllLineNum)
+						if (line > MaxPutAllLineNum)
 						{
 							break;
 						}
 					}
 				}
 			}
-			key = DoWork(key, predict, prob, null);
+			key = DoGramWork(key, predict, prob, null, null, minimal);
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private String DoWork(String key, ArrayList<String> predict, ArrayList<Double> prob, String[] ss)
+	private String DoGramWork(String key, ArrayList<String> predict, ArrayList<Double> prob, Queue<ModelQueueMember> queue, String[] ss, int minimal)
 	{
 		if (ss == null)
 		{
 			if (key != null)
 			{
-				PutToAero(key, predict, prob);
-			}
-		}
-		else
-		{
-			String afterkey = ss[1] + " " + ss[2];
-			if (key == null)
-			{
-				predict.add(ss[3]);
-				prob.add(Double.parseDouble(ss[0]));
-				return afterkey;
-			}
-			else
-			{
-				if (key.equals(afterkey))
+				if (minimal == 2)
 				{
-					predict.add(ss[3]);
-					prob.add(Double.parseDouble(ss[0]));
-					return key;
+					PutToAero(key, queue);
 				}
 				else
 				{
 					PutToAero(key, predict, prob);
-					predict.add(ss[3]);
+				}
+			}
+		}
+		else
+		{
+			String afterkey = null;
+			if (minimal == 2)
+			{
+				if (SimpleMethodParser.IsMethodInvocation(ss[1]))
+				{
+					afterkey = SimpleMethodParser.GetMethodInvocationName(ss[1]);
+				}
+			}
+			else
+			{
+				afterkey = ss[1];
+				for (int i=2;i<minimal-1;i++)
+				{
+					afterkey += (" " + ss[i]);
+				}
+			}
+			// to this location, afterkey could be null.
+			if (key == null)
+			{
+				if (minimal == 2)
+				{
+					if (afterkey != null)
+					{
+						queue.add(new ModelQueueMember(Double.parseDouble(ss[0]), ss[minimal-1]));
+					}
+				}
+				else
+				{
+					predict.add(ss[minimal-1]);
 					prob.add(Double.parseDouble(ss[0]));
+				}
+				return afterkey;
+			}
+			else
+			{
+				if (afterkey != null && key.equals(afterkey))
+				{
+					if (minimal == 2)
+					{
+						queue.add(new ModelQueueMember(Double.parseDouble(ss[0]), ss[minimal-1]));
+					}
+					else
+					{
+						predict.add(ss[minimal-1]);
+						prob.add(Double.parseDouble(ss[0]));
+					}
+					return key;
+				}
+				else
+				{
+					if (minimal == 2)
+					{
+						PutToAero(key, queue);
+						if (afterkey != null)
+						{
+							queue.add(new ModelQueueMember(Double.parseDouble(ss[0]), ss[minimal-1]));
+						}
+					}
+					else
+					{
+						PutToAero(key, predict, prob);
+						predict.add(ss[minimal-1]);
+						prob.add(Double.parseDouble(ss[0]));
+					}
 					return afterkey;
 				}
 			}
@@ -96,9 +176,28 @@ public class ModelIterator {
 		return null;
 	}
 	
+	private void PutToAero(String key, Queue<ModelQueueMember> queue)
+	{
+		int num = 0;
+		ArrayList<String> similar = new ArrayList<String>();
+		while (!queue.isEmpty())
+		{
+			num++;
+			if (num > MaxMethodSimilarNum)
+			{
+				break;
+			}
+			ModelQueueMember member = queue.poll();
+			String mname = member.getVal();
+			similar.add(mname);
+		}
+		AeroHelper.PutIntoAero(2, key, new Bin(BinSimilarName, similar));
+		queue.clear();
+	}
+	
 	private void PutToAero(String key, ArrayList<String> predict, ArrayList<Double> prob)
 	{
-		AeroHelper.PutIntoAero(1, new Key(param.getNamespace(), param.getSet(), key), new Bin("predict", predict), new Bin("probability", prob));
+		AeroHelper.PutIntoAero(1, key, new Bin(BinPredictName, predict), new Bin(BinProbabilityName, prob));
 		predict.clear();
 		prob.clear();
 	}

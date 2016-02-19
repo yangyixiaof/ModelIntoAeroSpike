@@ -12,22 +12,24 @@ import cn.yyx.research.ModelHandle.ModelIterator;
  */
 public class App {
 
-	public void StartPutIntoAeroSpike(String trainfilepath, Parameters param) {
+	public void StartPutIntoAeroSpike(String trainfilepath) {
 		File f = new File(trainfilepath);
 		if (!f.exists()) {
 			System.err.println("There is no trainfile in path:" + trainfilepath);
 			System.exit(1);
 		}
-		ModelIterator mi = new ModelIterator(trainfilepath, param);
+		ModelIterator mi = new ModelIterator(trainfilepath);
 		mi.IterateFile();
 	}
 
 	public static void main(String[] args) {
-		Parameters param = new Parameters("127.0.0.1", 3000, null, null, "yyx", "codengram");
-		AeroHelper.ANewClient(1, param);
+		Parameters param2 = new Parameters("127.0.0.1", 3000, null, null, "test", "codengram");
+		AeroHelper.ANewClient(1, param2);
+		Parameters param = new Parameters("127.0.0.1", 3000, null, null, "test", "code1sim");
+		AeroHelper.ANewClient(2, param);
 		App app = new App();
 		app.StartPutIntoAeroSpike(
-				"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/truncated-sorted-trainfile.lm", param);
+				"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/truncated-sorted-trainfile.lm");
 		AeroHelper.CloseClient(1);
 	}
 }
