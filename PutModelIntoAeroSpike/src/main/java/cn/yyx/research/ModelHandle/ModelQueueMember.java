@@ -1,8 +1,6 @@
 package cn.yyx.research.ModelHandle;
 
-import java.util.Comparator;
-
-public class ModelQueueMember implements Comparator<ModelQueueMember>{
+public class ModelQueueMember implements Comparable<ModelQueueMember> {
 	
 	private Double priority = (double) -1;
 	private String val = null;
@@ -14,8 +12,8 @@ public class ModelQueueMember implements Comparator<ModelQueueMember>{
 	}
 	
 	@Override
-	public int compare(ModelQueueMember o1, ModelQueueMember o2) {
-		return -Double.compare(o1.getPriority(), o2.getPriority());
+	public int compareTo(ModelQueueMember o) {
+		return -priority.compareTo(o.priority);
 	}
 
 	public Double getPriority() {

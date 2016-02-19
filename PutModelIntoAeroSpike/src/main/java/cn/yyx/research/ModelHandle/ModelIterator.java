@@ -69,7 +69,7 @@ public class ModelIterator {
 				{
 					line++;
 					System.out.println("current aline:"+allline + ";valid-line:"+line);
-					key = DoGramWork(key, predict, prob, null, ss, minimal);
+					key = DoGramWork(key, predict, prob, priorityQueue, ss, minimal);
 					if (MaxPutAllLineNum > 0)
 					{
 						if (line > MaxPutAllLineNum)
@@ -79,7 +79,7 @@ public class ModelIterator {
 					}
 				}
 			}
-			key = DoGramWork(key, predict, prob, null, null, minimal);
+			key = DoGramWork(key, predict, prob, priorityQueue, null, minimal);
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,6 +127,10 @@ public class ModelIterator {
 				{
 					if (afterkey != null)
 					{
+						if (queue == null)
+						{
+							System.err.println("queue null.");
+						}
 						queue.add(new ModelQueueMember(Double.parseDouble(ss[0]), ss[minimal-1]));
 					}
 				}
