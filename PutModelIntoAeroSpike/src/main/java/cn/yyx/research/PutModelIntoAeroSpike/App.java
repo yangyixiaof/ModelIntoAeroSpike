@@ -28,8 +28,12 @@ public class App {
 		Parameters param = new Parameters("127.0.0.1", 3000, null, null, "test", "code1sim");
 		AeroHelper.ANewClient(2, param);
 		App app = new App();
+		
+		// real path:/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm
+		// test path:
+		
 		app.StartPutIntoAeroSpike(
-				"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/truncated-sorted-trainfile.lm");
+				"smaltest/test-trainfile.lm");
 		AeroHelper.CloseClient(1);
 	}
 }
