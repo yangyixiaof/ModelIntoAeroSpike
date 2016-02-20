@@ -15,3 +15,6 @@
 
 -0.5026901      A@a0.int10=1; A@a1.int10=2;
 -0.5026901      A@a0.int1=1; A@$F0?0=@HO
+\3-grams:
+
+-0.3199112      A@a11.$F0?0=@HO CE@(float)a11.affine; A@a12.$F0?0=@HO
