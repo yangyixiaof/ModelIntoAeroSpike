@@ -1,0 +1,11 @@
+cause : ArrayList<@GlobalAnnotation
+
+result : 
+current aline:1414874;valid-line:1414866
+java.lang.StringIndexOutOfBoundsException: String index out of range: -4
+	at java.lang.String.substring(String.java:1967)
+	at cn.yyx.research.ModelHandle.SimpleMethodParser.GetMethodInvocationName(SimpleMethodParser.java:20)
+	at cn.yyx.research.ModelHandle.ModelIterator.DoGramWork(ModelIterator.java:114)
+	at cn.yyx.research.ModelHandle.ModelIterator.IterateFile(ModelIterator.java:74)
+	at cn.yyx.research.PutModelIntoAeroSpike.ModelSerialize.StartPutIntoAeroSpike(ModelSerialize.java:22)
+	at cn.yyx.research.PutModelIntoAeroSpike.ModelSerialize.main(ModelSerialize.java:36)
