@@ -12,11 +12,11 @@ import cn.yyx.research.ModelHandle.ModelIterator;
  */
 public class App {
 
-	public void StartPutIntoAeroSpike(String trainfilepath) {
+	public void StartPutIntoAeroSpike(String trainfilepath) throws Exception {
 		File f = new File(trainfilepath);
 		if (!f.exists()) {
 			System.err.println("There is no trainfile in path:" + trainfilepath);
-			System.exit(1);
+			throw new Exception("There is no trainfile in path:" + trainfilepath);
 		}
 		ModelIterator mi = new ModelIterator(trainfilepath);
 		mi.IterateFile();
@@ -32,9 +32,14 @@ public class App {
 		// real path:/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm
 		// test path:smaltest/test-trainfile.lm
 		
-		app.StartPutIntoAeroSpike(
-				"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
-				);
+		try {
+			app.StartPutIntoAeroSpike(
+					"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
+					);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		AeroHelper.CloseClient(1);
+		AeroHelper.CloseClient(2);
 	}
 }
