@@ -10,7 +10,7 @@ import cn.yyx.research.ModelHandle.ModelIterator;
  * Hello world!
  *
  */
-public class App {
+public class ModelSerialize {
 
 	public void StartPutIntoAeroSpike(String trainfilepath) throws Exception {
 		File f = new File(trainfilepath);
@@ -27,7 +27,7 @@ public class App {
 		AeroHelper.ANewClient(1, param2);
 		Parameters param = new Parameters("127.0.0.1", 3000, null, null, "test", "code1sim");
 		AeroHelper.ANewClient(2, param);
-		App app = new App();
+		ModelSerialize app = new ModelSerialize();
 		
 		// real path:/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm
 		// test path:smaltest/test-trainfile.lm
