@@ -15,7 +15,7 @@ public class App {
 	public void StartPutIntoAeroSpike(String trainfilepath) throws Exception {
 		File f = new File(trainfilepath);
 		if (!f.exists()) {
-			System.err.println("There is no trainfile in path:" + trainfilepath);
+			// System.err.println("There is no trainfile in path:" + trainfilepath);
 			throw new Exception("There is no trainfile in path:" + trainfilepath);
 		}
 		ModelIterator mi = new ModelIterator(trainfilepath);
@@ -38,6 +38,8 @@ public class App {
 					// "smaltest/test-trainfile.lm"
 					);
 		} catch (Exception e) {
+			e.printStackTrace();
+		} catch (Error e) {
 			e.printStackTrace();
 		}
 		AeroHelper.CloseClient(1);
