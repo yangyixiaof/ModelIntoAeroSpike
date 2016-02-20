@@ -67,7 +67,7 @@ public class ModelIterator {
 				}
 				
 				String[] ss = oneline.split("\\s+");
-				if (ss.length >= 2)
+				if (ss.length >= 2 && minimal >= 2)
 				{
 					line++;
 					System.out.println("current aline:"+allline + ";valid-line:"+line);
