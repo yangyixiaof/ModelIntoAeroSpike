@@ -14,7 +14,8 @@ import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 public class ModelIterator {
 	
 	// if -1, infinite.
-	public static final int MaxPutAllLineNum = 10;
+	public static final int MaxPutAllLineNum = -1;
+	// must > 0
 	public static final int MaxMethodSimilarNum = 50;
 	
 	public static final String BinSimilarName = "similar";
@@ -27,6 +28,7 @@ public class ModelIterator {
 		file = new File(filepath);
 	}
 	
+	@SuppressWarnings("unused")
 	public void IterateFile() {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
