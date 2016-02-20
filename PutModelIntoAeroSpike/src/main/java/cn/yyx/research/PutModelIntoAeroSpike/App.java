@@ -30,10 +30,11 @@ public class App {
 		App app = new App();
 		
 		// real path:/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm
-		// test path:
+		// test path:smaltest/test-trainfile.lm
 		
 		app.StartPutIntoAeroSpike(
-				"smaltest/test-trainfile.lm");
+				"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
+				);
 		AeroHelper.CloseClient(1);
 	}
 }
