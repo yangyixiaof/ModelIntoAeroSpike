@@ -10,17 +10,9 @@ import java.util.Queue;
 import com.aerospike.client.Bin;
 
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
+import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 
 public class ModelIterator {
-	
-	// if -1, infinite.
-	public static final int MaxPutAllLineNum = -1;
-	// must > 0
-	public static final int MaxMethodSimilarNum = 50;
-	
-	public static final String BinSimilarName = "similar";
-	public static final String BinPredictName = "predict";
-	public static final String BinProbabilityName = "probability";
 	
 	File file = null;
 	
@@ -72,9 +64,9 @@ public class ModelIterator {
 					line++;
 					System.out.println("current aline:"+allline + ";valid-line:"+line);
 					key = DoGramWork(key, predict, prob, priorityQueue, ss, minimal);
-					if (MaxPutAllLineNum > 0)
+					if (AeroMetaData.MaxPutAllLineNum > 0)
 					{
-						if (line > MaxPutAllLineNum)
+						if (line > AeroMetaData.MaxPutAllLineNum)
 						{
 							break;
 						}
@@ -189,7 +181,7 @@ public class ModelIterator {
 		while (!queue.isEmpty())
 		{
 			num++;
-			if (num > MaxMethodSimilarNum)
+			if (num > AeroMetaData.MaxMethodSimilarNum)
 			{
 				break;
 			}
@@ -197,13 +189,13 @@ public class ModelIterator {
 			String mname = member.getVal();
 			similar.add(mname);
 		}
-		AeroHelper.PutIntoAero(2, key, new Bin(BinSimilarName, similar));
+		AeroHelper.PutIntoAero(2, key, new Bin(AeroMetaData.BinSimilarName, similar));
 		queue.clear();
 	}
 	
 	private void PutToAero(String key, ArrayList<String> predict, ArrayList<Double> prob)
 	{
-		AeroHelper.PutIntoAero(1, key, new Bin(BinPredictName, predict), new Bin(BinProbabilityName, prob));
+		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob));
 		predict.clear();
 		prob.clear();
 	}
