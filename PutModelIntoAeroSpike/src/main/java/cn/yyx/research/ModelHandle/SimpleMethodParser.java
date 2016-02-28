@@ -13,11 +13,27 @@ public class SimpleMethodParser {
 		return false;
 	}
 	
+	public static boolean IsMethodDeclaration(String onesentence)
+	{
+		if (onesentence.startsWith(GCodeMetaInfo.MethodDeclarationHint))
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	public static String GetMethodInvocationName(String onesentence)
 	{
 		int atidx = onesentence.indexOf('@');
 		int paidx = onesentence.indexOf('(');
 		return onesentence.substring(atidx+1, paidx);
+	}
+	
+	public static String GetMethodSignatureName(String onesentence)
+	{
+		int atidx = onesentence.indexOf('@');
+		int paidx = onesentence.lastIndexOf(')');
+		return onesentence.substring(atidx+1, paidx+1);
 	}
 	
 }

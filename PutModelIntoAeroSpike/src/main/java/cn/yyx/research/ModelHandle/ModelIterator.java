@@ -105,6 +105,10 @@ public class ModelIterator {
 				{
 					afterkey = SimpleMethodParser.GetMethodInvocationName(ss[1]);
 				}
+				if (SimpleMethodParser.IsMethodDeclaration(ss[1]))
+				{
+					afterkey = SimpleMethodParser.GetMethodSignatureName(ss[1]);
+				}
 			}
 			else
 			{
