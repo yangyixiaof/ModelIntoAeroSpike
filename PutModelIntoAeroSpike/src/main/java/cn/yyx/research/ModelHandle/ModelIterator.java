@@ -9,6 +9,7 @@ import java.util.Queue;
 
 import com.aerospike.client.Bin;
 
+import cn.yyx.parse.specialparse.ParseRoot;
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 
@@ -63,6 +64,21 @@ public class ModelIterator {
 				{
 					line++;
 					System.out.println("current aline:"+allline + ";valid-line:"+line);
+					
+					if (minimal == 2)
+					{
+						// parse checking
+						try {
+							ParseRoot.ParseOneSentence(ss[1], null, true);
+						} catch (Exception e) {
+							System.err.println("Check Parse Error, the system will exit.");
+							System.exit(1);
+						} catch (Error e) {
+							System.err.println("Check Parse Error, the system will exit.");
+							System.exit(1);
+						}
+					}
+					
 					key = DoGramWork(key, predict, prob, priorityQueue, ss, minimal);
 					if (AeroMetaData.MaxPutAllLineNum > 0)
 					{
