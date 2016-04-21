@@ -4,11 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 import com.aerospike.client.Bin;
 
+import cn.yyx.contentassist.parsehelper.ComplexParser;
 import cn.yyx.parse.specialparse.ParseRoot;
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
@@ -215,6 +220,20 @@ public class ModelIterator {
 	
 	private void PutToAero(String key, ArrayList<String> predict, ArrayList<Double> prob)
 	{
+		// most important checking.
+		String[] ks = key.split(" ");
+		List<String> ptests = new LinkedList<String>();
+		ptests.addAll(Arrays.asList(ks));
+		ptests.addAll(predict);
+		Iterator<String> itr = ptests.iterator();
+		while (itr.hasNext())
+		{
+			String ke = itr.next();
+			// Sentence sete = null;
+			ComplexParser.GetSentence(ke);
+			System.out.println("One Sentence Successfully Parsed:" + ke + ";");
+		}
+		
 		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob));
 		predict.clear();
 		prob.clear();
