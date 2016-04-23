@@ -9,7 +9,6 @@ import java.util.Queue;
 
 import com.aerospike.client.Bin;
 
-import cn.yyx.parse.specialparse.ParseRoot;
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 
@@ -68,7 +67,8 @@ public class ModelIterator {
 					if (minimal == 2)
 					{
 						// parse checking
-						try {
+						ModelChecker.CheckOneSentence(ss[1]);
+						/*try {
 							ParseRoot.ParseOneSentence(ss[1], null, true);
 						} catch (Exception e) {
 							System.err.println("Check Parse Error, the system will exit.");
@@ -76,7 +76,7 @@ public class ModelIterator {
 						} catch (Error e) {
 							System.err.println("Check Parse Error, the system will exit.");
 							System.exit(1);
-						}
+						}*/
 					}
 					
 					key = DoGramWork(key, predict, prob, priorityQueue, ss, minimal);
@@ -216,7 +216,7 @@ public class ModelIterator {
 	private void PutToAero(String key, ArrayList<String> predict, ArrayList<Double> prob)
 	{
 		
-		ModelChecker.CheckWillBePutModel(key, predict);
+		// ModelChecker.CheckWillBePutModel(key, predict);
 		
 		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob));
 		predict.clear();
