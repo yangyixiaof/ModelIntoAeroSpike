@@ -47,7 +47,7 @@ public class ModelIterator {
 					{
 
 						// TODO
-						System.err.println("First Enter 3-grams, the system will exit.");
+						System.err.println("First Enter 2-grams, the system will exit.");
 						System.exit(1);
 						
 						DoGramWork(key, null, null, priorityQueue, null, minimal);
