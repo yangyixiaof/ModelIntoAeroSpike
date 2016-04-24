@@ -50,6 +50,11 @@ public class ModelIterator {
 					}
 					else
 					{
+						
+						// TODO
+						System.err.println("First Enter 3-grams, the system will exit.");
+						System.exit(1);
+						
 						if (oneline.equals("\\3-grams:"))
 						{
 							key = DoGramWork(key, predict, prob, null, null, minimal);
