@@ -73,7 +73,7 @@ public class ModelIterator {
 					{
 						// parse checking
 						// ModelChecker.CheckOneSentence(ss[1]);
-						ModelChecker.CheckOneSentenceWeaker(ss[1]);
+						// ModelChecker.CheckOneSentenceWeaker(ss[1]);
 						/*try {
 							ParseRoot.ParseOneSentence(ss[1], null, true);
 						} catch (Exception e) {
