@@ -105,26 +105,7 @@ public class OrderModelIterator {
 		return null;
 	}
 	
-	protected void PutToAero(String key, Queue<CountModelQueueMember> queue)
-	{
-		int num = 0;
-		ArrayList<String> similar = new ArrayList<String>();
-		while (!queue.isEmpty())
-		{
-			num++;
-			if (num > AeroMetaData.MaxMethodSimilarNum)
-			{
-				break;
-			}
-			CountModelQueueMember member = queue.poll();
-			String mname = member.getVal();
-			similar.add(mname);
-		}
-		AeroHelper.PutIntoAero(2, key, new Bin(AeroMetaData.BinSimilarName, similar));
-		queue.clear();
-	}
-	
-	protected void PutToAero(String key, ArrayList<String> predict, ArrayList<Integer> count)
+	private void PutToAero(String key, ArrayList<String> predict, ArrayList<Integer> count)
 	{
 		ArrayList<Double> prob = ComputeProbFromCount(count);
 		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob));

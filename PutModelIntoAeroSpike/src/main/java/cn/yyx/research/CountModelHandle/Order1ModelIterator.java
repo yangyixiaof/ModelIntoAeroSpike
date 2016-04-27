@@ -3,6 +3,10 @@ package cn.yyx.research.CountModelHandle;
 import java.util.ArrayList;
 import java.util.Queue;
 
+import com.aerospike.client.Bin;
+
+import cn.yyx.research.AeroSpikeHandle.AeroHelper;
+import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 import cn.yyx.research.LMModelHandle.ModelChecker;
 import cn.yyx.research.LMModelHandle.SimpleMethodParser;
 
@@ -70,6 +74,26 @@ public class Order1ModelIterator extends OrderModelIterator{
 		}
 		// postfix : key must be null.
 		return null;
+	}
+	
+
+	private void PutToAero(String key, Queue<CountModelQueueMember> queue)
+	{
+		int num = 0;
+		ArrayList<String> similar = new ArrayList<String>();
+		while (!queue.isEmpty())
+		{
+			num++;
+			if (num > AeroMetaData.MaxMethodSimilarNum)
+			{
+				break;
+			}
+			CountModelQueueMember member = queue.poll();
+			String mname = member.getVal();
+			similar.add(mname);
+		}
+		AeroHelper.PutIntoAero(2, key, new Bin(AeroMetaData.BinSimilarName, similar));
+		queue.clear();
 	}
 	
 }
