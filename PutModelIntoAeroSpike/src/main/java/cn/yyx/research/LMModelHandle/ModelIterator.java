@@ -1,4 +1,4 @@
-package cn.yyx.research.ModelHandle;
+package cn.yyx.research.LMModelHandle;
 
 import java.io.BufferedReader;
 import java.io.File;

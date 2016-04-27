@@ -1,4 +1,4 @@
-package cn.yyx.research.ModelHandle;
+package cn.yyx.research.LMModelHandle;
 
 public class SimpleMethodParser {
 	
