@@ -51,7 +51,7 @@ public class ModelSerialize {
 			//		"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
 			//		"smaltest/test-trainfile.lm"
 			//		);
-			app.StartPutCountModelIntoAeroSpike(3);
+			app.StartPutCountModelIntoAeroSpike(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} catch (Error e) {
