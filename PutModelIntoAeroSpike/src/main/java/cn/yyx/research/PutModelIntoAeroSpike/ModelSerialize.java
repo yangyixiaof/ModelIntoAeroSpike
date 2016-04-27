@@ -4,6 +4,8 @@ import java.io.File;
 
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.Parameters;
+import cn.yyx.research.CountModelHandle.Order1ModelIterator;
+import cn.yyx.research.CountModelHandle.OrderModelIterator;
 import cn.yyx.research.LMModelHandle.ModelIterator;
 
 /**
@@ -21,6 +23,18 @@ public class ModelSerialize {
 		ModelIterator mi = new ModelIterator(trainfilepath);
 		mi.IterateFile();
 	}
+	
+	public void StartPutCountModelIntoAeroSpike(int order) throws Exception {
+		{
+			OrderModelIterator omi = new Order1ModelIterator();
+			omi.IterateFile();
+		}
+		for (int i=1;i<order;i++)
+		{
+			OrderModelIterator omi = new OrderModelIterator(i+1);
+			omi.IterateFile();
+		}
+	}
 
 	public static void main(String[] args) {
 		Parameters param2 = new Parameters("127.0.0.1", 3000, null, null, "yyx", "codengram");
@@ -33,10 +47,11 @@ public class ModelSerialize {
 		// test path:smaltest/test-trainfile.lm
 		
 		try {
-			app.StartPutIntoAeroSpike(
-					"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
-					// "smaltest/test-trainfile.lm"
-					);
+			//app.StartPutIntoAeroSpike(
+			//		"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
+			//		"smaltest/test-trainfile.lm"
+			//		);
+			app.StartPutCountModelIntoAeroSpike(3);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} catch (Error e) {
