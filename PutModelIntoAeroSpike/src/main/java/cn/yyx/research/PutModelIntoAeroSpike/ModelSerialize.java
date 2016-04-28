@@ -25,22 +25,21 @@ public class ModelSerialize {
 	}
 	
 	public void StartPutCountModelIntoAeroSpike(int order) throws Exception {
-		{
+		/*{
 			// raw one sentence parse block.
-			// ComplexParser.GetSentence("A@@C0?0*=this.frequencyX");
-			// ComplexParser.GetSentence("PeE@+.5");
-			// ComplexParser.GetSentence("Q@ACTION_SIZE.Action]");
-			// System.err.println("one sentence parse block over.");
-			// System.exit(1);
-		}
+			ComplexParser.GetSentence("A@@C0?0*=this.frequencyX");
+			ComplexParser.GetSentence("PeE@+.5");
+			ComplexParser.GetSentence("Q@ACTION_SIZE.Action]");
+			System.err.println("one sentence parse block over.");
+			System.exit(1);
+		}*/
 		
-		{
+		/*{
 			OrderModelIterator omi = new Order1ModelIterator();
 			omi.IterateFile();
-		}
-		
-		System.err.println("Currently Stop Here, just test order1 to check parse functionality.");
-		System.exit(1);
+			System.err.println("Currently Stop Here, just test order1 to check parse functionality.");
+			System.exit(1);
+		}*/
 		
 		for (int i=1;i<order;i++)
 		{
@@ -64,7 +63,7 @@ public class ModelSerialize {
 			//		"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
 			//		"smaltest/test-trainfile.lm"
 			//		);
-			app.StartPutCountModelIntoAeroSpike(1);
+			app.StartPutCountModelIntoAeroSpike(2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} catch (Error e) {

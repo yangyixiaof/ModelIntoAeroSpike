@@ -25,7 +25,10 @@ public class OrderModelIterator {
 	@SuppressWarnings("unused")
 	public void IterateFile() {
 		try {
-			String filepath = finaldir + "/" + "order" + order + "final.count";
+			//testing
+			String filepath = "smalltest/testo2.count";
+			
+			// String filepath = finaldir + "/" + "order" + order + "final.count";
 			BufferedReader br = new BufferedReader(new FileReader(filepath));
 			String oneline = null;
 			int line = 0;
