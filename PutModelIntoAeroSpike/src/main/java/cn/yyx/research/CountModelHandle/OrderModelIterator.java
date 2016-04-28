@@ -25,10 +25,11 @@ public class OrderModelIterator {
 	@SuppressWarnings("unused")
 	public void IterateFile() {
 		try {
-			//testing
-			String filepath = "smalltest/testo2.count";
 			
-			// String filepath = finaldir + "/" + "order" + order + "final.count";
+			// tested
+			// String filepath = "smalltest/testo2.count";
+			
+			String filepath = finaldir + "/" + "order" + order + "final.count";
 			BufferedReader br = new BufferedReader(new FileReader(filepath));
 			String oneline = null;
 			int line = 0;
@@ -127,17 +128,22 @@ public class OrderModelIterator {
 	private ArrayList<Double> ComputeProbFromCount(ArrayList<Integer> count)
 	{
 		ArrayList<Double> result = new ArrayList<Double>();
-		Iterator<Integer> itr = count.iterator();
 		int total = 0;
-		while (itr.hasNext())
 		{
-			int ct = itr.next();
-			total += ct;
+			Iterator<Integer> itr = count.iterator();
+			while (itr.hasNext())
+			{
+				int ct = itr.next();
+				total += ct;
+			}
 		}
-		while (itr.hasNext())
 		{
-			int ct = itr.next();
-			result.add((ct*1.0)/(total*1.0));
+			Iterator<Integer> itr = count.iterator();
+			while (itr.hasNext())
+			{
+				int ct = itr.next();
+				result.add((ct*1.0)/(total*1.0));
+			}
 		}
 		return result;
 	}
