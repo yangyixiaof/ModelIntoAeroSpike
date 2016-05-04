@@ -1,28 +1,15 @@
 package cn.yyx.research.PutModelIntoAeroSpike;
 
-import java.io.File;
-
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.Parameters;
 import cn.yyx.research.CountModelHandle.Order1ModelIterator;
 import cn.yyx.research.CountModelHandle.OrderModelIterator;
-import cn.yyx.research.LMModelHandle.ModelIterator;
 
 /**
  * Hello world!
  *
  */
 public class ModelSerialize {
-
-	public void StartPutIntoAeroSpike(String trainfilepath) throws Exception {
-		File f = new File(trainfilepath);
-		if (!f.exists()) {
-			// System.err.println("There is no trainfile in path:" + trainfilepath);
-			throw new Exception("There is no trainfile in path:" + trainfilepath);
-		}
-		ModelIterator mi = new ModelIterator(trainfilepath);
-		mi.IterateFile();
-	}
 	
 	public void StartPutCountModelIntoAeroSpike(int order) throws Exception {
 		/*{
@@ -55,14 +42,7 @@ public class ModelSerialize {
 		AeroHelper.ANewClient(2, param);
 		ModelSerialize app = new ModelSerialize();
 		
-		// real path:/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm
-		// test path:smaltest/test-trainfile.lm
-		
 		try {
-			//app.StartPutIntoAeroSpike(
-			//		"/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
-			//		"smaltest/test-trainfile.lm"
-			//		);
 			app.StartPutCountModelIntoAeroSpike(2);
 		} catch (Exception e) {
 			e.printStackTrace();
