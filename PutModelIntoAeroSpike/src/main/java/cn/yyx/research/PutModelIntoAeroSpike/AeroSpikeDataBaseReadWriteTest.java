@@ -30,7 +30,7 @@ public class AeroSpikeDataBaseReadWriteTest {
 		try {
 			app.StartPutIntoAeroSpike(
 					// "/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm"
-					"smaltest/test-trainfile.lm"
+					"smalltest/test-trainfile.lm"
 					);
 		} catch (Exception e) {
 			e.printStackTrace();
