@@ -46,7 +46,6 @@ public class ModelIterator {
 					if (oneline.equals("\\2-grams:"))
 					{
 
-						// TODO
 						System.err.println("First Enter 2-grams, the system will exit.");
 						System.exit(1);
 						
