@@ -8,6 +8,11 @@ import com.aerospike.client.Bin;
 import com.aerospike.client.Key;
 import com.aerospike.client.Record;
 
+import cn.yyx.research.AeroSpikeHandle.AeroClientManager;
+import cn.yyx.research.AeroSpikeHandle.Console;
+import cn.yyx.research.AeroSpikeHandle.Parameters;
+import cn.yyx.research.AeroSpikeHandle.ValidateHelper;
+
 public class AeroHelper {
 	
 	public static final Console console = new Console();

@@ -6,6 +6,8 @@ import java.util.TreeMap;
 import com.aerospike.client.AerospikeClient;
 import com.aerospike.client.policy.ClientPolicy;
 
+import cn.yyx.research.AeroSpikeHandle.Parameters;
+
 public class AeroClientManager {
 	
 	Map<Integer, AerospikeClient> clientManager = new TreeMap<Integer, AerospikeClient>();

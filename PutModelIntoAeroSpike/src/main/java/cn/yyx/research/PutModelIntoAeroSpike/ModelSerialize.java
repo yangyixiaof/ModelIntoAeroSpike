@@ -1,9 +1,9 @@
 package cn.yyx.research.PutModelIntoAeroSpike;
 
-import cn.yyx.research.AeroSpikeHandle.AeroHelper;
-import cn.yyx.research.AeroSpikeHandle.Parameters;
 import cn.yyx.research.CountModelHandle.Order1ModelIterator;
 import cn.yyx.research.CountModelHandle.OrderModelIterator;
+import cn.yyx.research.aerospikehandle.AeroHelper;
+import cn.yyx.research.aerospikehandle.Parameters;
 
 /**
  * Hello world!
