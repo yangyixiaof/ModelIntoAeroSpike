@@ -24,8 +24,8 @@ public class ModelSerialize {
 		{
 			OrderModelIterator omi = new Order1ModelIterator();
 			omi.IterateFile();
-			// System.err.println("Currently Stop Here, just test order1 to check parse functionality.");
-			// System.exit(1);
+			System.err.println("Currently Stop Here, just test order1 to check parse functionality.");
+			System.exit(1);
 		}
 		
 		for (int i=1;i<order;i++)
