@@ -30,7 +30,7 @@ public class Order1ModelIterator extends OrderModelIterator{
 		{
 			
 			// do Complex Parse Check.
-			ModelChecker.CheckOneSentence(ss[0]);
+			ModelChecker.CheckOneSentenceWithNoExit(ss[0]);
 			
 			String afterkey = null;
 			if (SimpleMethodParser.IsMethodInvocation(ss[0]))

@@ -29,4 +29,8 @@ public class ModelChecker {
 		ComplexParser.GetSentence(onesentence);
 	}
 	
+	public static void CheckOneSentenceWithNoExit(String onesentence) {
+		ComplexParser.GetSentenceWithNoExit(onesentence);
+	}
+	
 }
