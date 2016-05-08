@@ -48,7 +48,7 @@ public class OrderModelIterator {
 				
 				// debugging
 				System.out.println("current Handled aline:"+line);
-				System.err.println("current Handled aline:"+line);
+				// System.err.println("current Handled aline:"+line);
 				
 				if (AeroMetaData.MaxPutAllLineNum > 0)
 				{
