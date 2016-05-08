@@ -1,5 +1,9 @@
 package cn.yyx.research.PutModelIntoAeroSpike;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import cn.yyx.research.CountModelHandle.Order1ModelIterator;
 import cn.yyx.research.CountModelHandle.OrderModelIterator;
 import cn.yyx.research.aerospikehandle.AeroHelper;
@@ -20,6 +24,17 @@ public class ModelSerialize {
 			System.err.println("one sentence parse block over.");
 			System.exit(1);
 		}*/
+		
+		// ModelChecker.CheckOneSentenceWithNoExit("A@überServlet.SPARQLServer=true");
+		// System.exit(1);
+		
+		// redirect error stream
+		try {
+			System.setErr(new PrintStream(new FileOutputStream("system_err.txt")));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 		
 		{
 			OrderModelIterator omi = new Order1ModelIterator();
