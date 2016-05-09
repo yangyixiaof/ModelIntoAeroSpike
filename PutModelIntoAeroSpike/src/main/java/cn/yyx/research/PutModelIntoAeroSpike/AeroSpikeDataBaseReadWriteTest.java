@@ -3,8 +3,8 @@ package cn.yyx.research.PutModelIntoAeroSpike;
 import java.io.File;
 
 import cn.yyx.research.LMModelHandle.ModelIterator;
-import cn.yyx.research.aerospikehandle.AeroHelper;
-import cn.yyx.research.aerospikehandle.Parameters;
+import cn.yyx.research.AeroSpikeHandle.AeroHelper;
+import cn.yyx.research.AeroSpikeHandle.Parameters;
 
 public class AeroSpikeDataBaseReadWriteTest {
 	public void StartPutIntoAeroSpike(String trainfilepath) throws Exception {
