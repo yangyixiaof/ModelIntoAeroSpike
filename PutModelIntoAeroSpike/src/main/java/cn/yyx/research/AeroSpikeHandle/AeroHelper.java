@@ -31,6 +31,12 @@ public class AeroHelper {
 	
 	public static void PutIntoAero(Integer id, String key, Bin bin1, int binsize)
 	{
+		if (binsize > AeroMetaData.MaxMethodSimilarNum)
+		{
+			System.out.println("What the fuck! size too large, the system will exit.");
+			System.err.println("What the fuck! size too large, the system will exit.");
+			System.exit(1);
+		}
 		try {
 			AerospikeClient client = acm.GetClient(id);
 			Parameters param = acm.GetParameters(id);
@@ -42,7 +48,7 @@ public class AeroHelper {
 			System.exit(1);
 		}
 		catch (Error e) {
-			System.out.println("Error Happened in 2 and above 2 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
+			System.out.println("Error Happened in 1 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
 			e.printStackTrace(System.out);
 			e.printStackTrace();
 			System.exit(1);
@@ -51,6 +57,12 @@ public class AeroHelper {
 	
 	public static void PutIntoAero(Integer id, String key, Bin bin1, Bin bin2, int binsize)
 	{
+		if (binsize > AeroMetaData.MaxBinNum)
+		{
+			System.out.println("What the fuck! size too large, the system will exit.");
+			System.err.println("What the fuck! size too large, the system will exit.");
+			System.exit(1);
+		}
 		try {
 			AerospikeClient client = acm.GetClient(id);
 			Parameters param = acm.GetParameters(id);

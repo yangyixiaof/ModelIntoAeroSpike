@@ -51,8 +51,8 @@ public class ModelSerialize {
 	}
 
 	public static void main(String[] args) {
-		String ip = "127.0.0.1";
-		// String ip = "192.168.1.100";
+		// String ip = "127.0.0.1";
+		String ip = "192.168.1.100";
 		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
 		AeroHelper.ANewClient(1, param2);
 		Parameters param = new Parameters(ip, 3000, null, null, "yyx", "code1sim");
