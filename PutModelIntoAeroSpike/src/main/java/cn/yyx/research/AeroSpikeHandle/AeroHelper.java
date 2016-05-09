@@ -38,11 +38,13 @@ public class AeroHelper {
 		} catch (Exception e) {
 			System.out.println("Error Happened in 1 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
 			e.printStackTrace(System.out);
+			e.printStackTrace();
 			System.exit(1);
 		}
 		catch (Error e) {
 			System.out.println("Error Happened in 2 and above 2 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
 			e.printStackTrace(System.out);
+			e.printStackTrace();
 			System.exit(1);
 		}
 	}
@@ -56,11 +58,13 @@ public class AeroHelper {
 		} catch (Exception e) {
 			System.out.println("Error Happened in 2 and above 2 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
 			e.printStackTrace(System.out);
+			e.printStackTrace();
 			System.exit(1);
 		}
 		catch (Error e) {
 			System.out.println("Error Happened in 2 and above 2 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
 			e.printStackTrace(System.out);
+			e.printStackTrace();
 			System.exit(1);
 		}
 	}

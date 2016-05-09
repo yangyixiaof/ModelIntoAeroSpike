@@ -7,6 +7,8 @@ public class AeroMetaData {
 	// must > 0
 	public static final int MaxMethodSimilarNum = 50;
 	
+	public static final int MaxBinNum = 50;
+	
 	// code1sim
 	public static final String BinSimilarName = "similar";
 	// codengram
