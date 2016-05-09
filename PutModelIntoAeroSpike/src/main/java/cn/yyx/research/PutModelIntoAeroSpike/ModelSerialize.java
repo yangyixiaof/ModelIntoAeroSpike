@@ -6,8 +6,8 @@ import java.io.PrintStream;
 
 import cn.yyx.research.CountModelHandle.Order1ModelIterator;
 import cn.yyx.research.CountModelHandle.OrderModelIterator;
-import cn.yyx.research.aerospikehandle.AeroHelper;
-import cn.yyx.research.aerospikehandle.Parameters;
+import cn.yyx.research.AeroSpikeHandle.AeroHelper;
+import cn.yyx.research.AeroSpikeHandle.Parameters;
 
 /**
  * Hello world!

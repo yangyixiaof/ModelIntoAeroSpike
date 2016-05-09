@@ -9,8 +9,8 @@ import java.util.Queue;
 
 import com.aerospike.client.Bin;
 
-import cn.yyx.research.aerospikehandle.AeroHelper;
-import cn.yyx.research.aerospikehandle.AeroMetaData;
+import cn.yyx.research.AeroSpikeHandle.AeroHelper;
+import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 
 public class ModelIterator {
 	
