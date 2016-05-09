@@ -113,7 +113,7 @@ public class OrderModelIterator {
 	private void PutToAero(String key, ArrayList<String> predict, ArrayList<Integer> count)
 	{
 		ArrayList<Double> prob = ComputeProbFromCount(count);
-		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob));
+		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob), predict.size());
 		predict.clear();
 		count.clear();
 	}

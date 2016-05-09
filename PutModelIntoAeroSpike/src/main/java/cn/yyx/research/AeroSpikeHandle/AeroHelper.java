@@ -29,18 +29,30 @@ public class AeroHelper {
 		acm.CloseClient(id);
 	}
 	
-	public static void PutIntoAero(Integer id, String key, Bin bin1)
+	public static void PutIntoAero(Integer id, String key, Bin bin1, int binsize)
 	{
-		AerospikeClient client = acm.GetClient(id);
-		Parameters param = acm.GetParameters(id);
-		client.put(null, new Key(param.getNamespace(), param.getSet(), key), bin1);
+		try {
+			AerospikeClient client = acm.GetClient(id);
+			Parameters param = acm.GetParameters(id);
+			client.put(null, new Key(param.getNamespace(), param.getSet(), key), bin1);
+		} catch (Exception e) {
+			System.out.println("Error Happened in 1 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
+			e.printStackTrace(System.out);
+			System.exit(1);
+		}
 	}
 	
-	public static void PutIntoAero(Integer id, String key, Bin bin1, Bin bin2)
+	public static void PutIntoAero(Integer id, String key, Bin bin1, Bin bin2, int binsize)
 	{
-		AerospikeClient client = acm.GetClient(id);
-		Parameters param = acm.GetParameters(id);
-		client.put(null, new Key(param.getNamespace(), param.getSet(), key), bin1, bin2);
+		try {
+			AerospikeClient client = acm.GetClient(id);
+			Parameters param = acm.GetParameters(id);
+			client.put(null, new Key(param.getNamespace(), param.getSet(), key), bin1, bin2);
+		} catch (Exception e) {
+			System.out.println("Error Happened in 2 and above 2 order." + "Error Key is:" + key + ";" + "prredicts size:" + binsize);
+			e.printStackTrace(System.out);
+			System.exit(1);
+		}
 	}
 
 	public static void testListStrings(Integer id) throws Exception {

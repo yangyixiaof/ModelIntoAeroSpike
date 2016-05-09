@@ -214,7 +214,7 @@ public class ModelIterator {
 			String mname = member.getVal();
 			similar.add(mname);
 		}
-		AeroHelper.PutIntoAero(2, key, new Bin(AeroMetaData.BinSimilarName, similar));
+		AeroHelper.PutIntoAero(2, key, new Bin(AeroMetaData.BinSimilarName, similar), similar.size());
 		queue.clear();
 	}
 	
@@ -223,7 +223,7 @@ public class ModelIterator {
 		
 		// ModelChecker.CheckWillBePutModel(key, predict);
 		
-		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob));
+		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, predict), new Bin(AeroMetaData.BinProbabilityName, prob), predict.size());
 		predict.clear();
 		prob.clear();
 	}
