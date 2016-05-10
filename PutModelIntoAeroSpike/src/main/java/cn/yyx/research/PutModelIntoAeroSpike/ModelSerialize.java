@@ -58,7 +58,6 @@ public class ModelSerialize {
 		Parameters param = new Parameters(ip, 3000, null, null, "yyx", "code1sim");
 		AeroHelper.ANewClient(2, param);
 		ModelSerialize app = new ModelSerialize();
-		
 		try {
 			app.StartPutCountModelIntoAeroSpike(5);
 		} catch (Exception e) {

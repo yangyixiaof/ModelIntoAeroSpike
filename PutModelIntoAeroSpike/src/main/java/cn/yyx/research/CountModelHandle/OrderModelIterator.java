@@ -61,7 +61,9 @@ public class OrderModelIterator {
 			DoGramWork(key, predict, prob, priorityQueue, null);
 			br.close();
 		} catch (Exception e) {
+			e.printStackTrace(System.out);
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 	

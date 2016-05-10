@@ -12,15 +12,15 @@ public class BinTrimer {
 	private ArrayList<String> predict = null;
 	private ArrayList<Double> prob = null;
 	
-	public void TrimBin(ArrayList<String> predict, ArrayList<Double> prob)
+	public void TrimBin(ArrayList<String> predictpara, ArrayList<Double> probpara)
 	{
 		Queue<ModelQueueMember> sque = new PriorityQueue<ModelQueueMember>();
-		if (predict.size() > AeroMetaData.MaxBinNum)
+		if (predictpara.size() > AeroMetaData.MaxBinNum)
 		{
-			int len = predict.size();
+			int len = predictpara.size();
 			for (int i=0;i<len;i++)
 			{
-				sque.add(new ModelQueueMember(prob.get(i), predict.get(i)));
+				sque.add(new ModelQueueMember(probpara.get(i), predictpara.get(i)));
 			}
 			predict = new ArrayList<String>();
 			prob = new ArrayList<Double>();
@@ -33,8 +33,8 @@ public class BinTrimer {
 		}
 		else
 		{
-			this.setPredict(predict);
-			this.setProb(prob);
+			this.setPredict(predictpara);
+			this.setProb(probpara);
 		}
 	}
 
