@@ -15,26 +15,19 @@ public class BinTrimer {
 	public void TrimBin(ArrayList<String> predictpara, ArrayList<Double> probpara)
 	{
 		Queue<ModelQueueMember> sque = new PriorityQueue<ModelQueueMember>();
-		if (predictpara.size() > AeroMetaData.MaxBinNum)
+		int len = predictpara.size();
+		for (int i=0;i<len;i++)
 		{
-			int len = predictpara.size();
-			for (int i=0;i<len;i++)
-			{
-				sque.add(new ModelQueueMember(probpara.get(i), predictpara.get(i)));
-			}
-			predict = new ArrayList<String>();
-			prob = new ArrayList<Double>();
-			for (int i=0;i<AeroMetaData.MaxBinNum;i++)
-			{
-				ModelQueueMember sp = sque.poll();
-				predict.add(sp.getVal());
-				prob.add(sp.getPriority());
-			}
+			sque.add(new ModelQueueMember(probpara.get(i), predictpara.get(i)));
 		}
-		else
+		int msize = Math.min(AeroMetaData.MaxBinNum, len);
+		predict = new ArrayList<String>();
+		prob = new ArrayList<Double>();
+		for (int i=0;i<msize;i++)
 		{
-			this.setPredict(predictpara);
-			this.setProb(probpara);
+			ModelQueueMember sp = sque.poll();
+			predict.add(sp.getVal());
+			prob.add(sp.getPriority());
 		}
 	}
 
