@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+import cn.yyx.research.CountModelHandle.CountModelMetaInfo;
 import cn.yyx.research.CountModelHandle.Order1ModelIterator;
 import cn.yyx.research.CountModelHandle.OrderModelIterator;
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
@@ -51,8 +52,12 @@ public class ModelSerialize {
 	}
 
 	public static void main(String[] args) {
-		// String ip = "127.0.0.1";
-		String ip = "192.168.1.100";
+		// testing
+		CountModelMetaInfo.finaldir = "/home/yyx/CodeComletionTestSpace/IR_yyx/BigClassDetail/ClassWorkSpace/results";
+		String ip = "127.0.0.1";
+		
+		// normal
+		// String ip = "192.168.1.100";
 		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
 		AeroHelper.ANewClient(1, param2);
 		Parameters param = new Parameters(ip, 3000, null, null, "yyx", "code1sim");

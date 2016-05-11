@@ -14,8 +14,6 @@ import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 
 public class OrderModelIterator {
 	
-	public static final String finaldir = "/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/results";
-	
 	private int order = -1;
 	
 	public OrderModelIterator(int order) {
@@ -29,7 +27,7 @@ public class OrderModelIterator {
 			// tested
 			// String filepath = "smalltest/testo2.count";
 			
-			String filepath = finaldir + "/" + "order" + order + "final.count";
+			String filepath = CountModelMetaInfo.finaldir + "/" + "order" + order + "final.count";
 			BufferedReader br = new BufferedReader(new FileReader(filepath));
 			String oneline = null;
 			int line = 0;
