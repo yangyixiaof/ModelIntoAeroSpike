@@ -114,7 +114,7 @@ public class OrderModelIterator {
 	{
 		ArrayList<Double> prob = ComputeProbFromCount(count);
 		BinTrimer br = new BinTrimer();
-		br.TrimBin(predict, prob);
+		br.TrimAndSortBin(predict, prob);
 		AeroHelper.PutIntoAero(1, key, new Bin(AeroMetaData.BinPredictName, br.getPredict()), new Bin(AeroMetaData.BinProbabilityName, br.getProb()), br.Size());
 		predict.clear();
 		count.clear();

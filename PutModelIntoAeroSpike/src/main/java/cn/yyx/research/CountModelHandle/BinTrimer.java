@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import cn.yyx.contentassist.commonutils.ProbabilityComputer;
 import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 import cn.yyx.research.LMModelHandle.ModelQueueMember;
 
@@ -12,7 +13,7 @@ public class BinTrimer {
 	private ArrayList<String> predict = null;
 	private ArrayList<Double> prob = null;
 	
-	public void TrimBin(ArrayList<String> predictpara, ArrayList<Double> probpara)
+	public void TrimAndSortBin(ArrayList<String> predictpara, ArrayList<Double> probpara)
 	{
 		Queue<ModelQueueMember> sque = new PriorityQueue<ModelQueueMember>();
 		int len = predictpara.size();
@@ -27,7 +28,7 @@ public class BinTrimer {
 		{
 			ModelQueueMember sp = sque.poll();
 			predict.add(sp.getVal());
-			prob.add(sp.getPriority());
+			prob.add(ProbabilityComputer.ComputeProbability(sp.getPriority()));
 		}
 	}
 
