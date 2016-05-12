@@ -63,6 +63,14 @@ public class AeroSpikeReadWriteTest {
 		AeroHelper.ANewClient(AeroMetaData.code1sim, param);
 		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
 		AeroHelper.ANewClient(AeroMetaData.codengram, param2);
+		
+		try {
+			AeroHelper.testLinkedListStrings(AeroMetaData.codengram);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			System.exit(1);
+		}
+		
 		ModelSerialize app = new ModelSerialize();
 		try {
 			app.StartPutCountModelIntoAeroSpike(2);
