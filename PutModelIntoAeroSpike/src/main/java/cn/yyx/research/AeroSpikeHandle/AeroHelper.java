@@ -147,9 +147,12 @@ public class AeroHelper {
 		list.add("string6");
 
 		Bin bin = new Bin("listbin1", list);
-		client.put(params.writePolicy, new Key(params.getNamespace(), params.getSet(), "listkey2"), bin);
-
-		Record record = client.get(params.policy, new Key(params.getNamespace(), params.getSet(), "listkey2"), bin.name);
+		bin2 = new Bin("listbin2", list2);
+		client.put(params.writePolicy, new Key(params.getNamespace(), params.getSet(), "listkey2"), bin, bin2);
+		
+		System.out.println("bin name:" + bin.name);
+		
+		Record record = client.get(params.policy, new Key(params.getNamespace(), params.getSet(), "listkey2"), bin.name, bin2.name);
 		List<?> receivedList = (List<?>) record.getValue(bin.name);
 
 		ValidateHelper.validateSize(3, receivedList.size());
