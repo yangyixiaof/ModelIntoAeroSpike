@@ -64,13 +64,13 @@ public class AeroSpikeReadWriteTest {
 		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
 		AeroHelper.ANewClient(AeroMetaData.codengram, param2);
 		
-		try {
+		/*try {
 			AeroHelper.testLinkedListStrings(AeroMetaData.codengram);
 		} catch (Exception e1) {
 			e1.printStackTrace(System.out);
 			e1.printStackTrace();
 			System.exit(1);
-		}
+		}*/
 		
 		ModelSerialize app = new ModelSerialize();
 		try {
