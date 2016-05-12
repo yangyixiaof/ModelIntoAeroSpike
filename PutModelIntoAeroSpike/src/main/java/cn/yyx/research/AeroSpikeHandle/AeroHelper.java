@@ -86,6 +86,8 @@ public class AeroHelper {
 		console.info("Read/Write ArrayList<String>");
 		AerospikeClient client = acm.GetClient(id);
 		Parameters params = acm.GetParameters(id);
+		
+		
 		Key key2 = new Key(params.getNamespace(), params.getSet(), "listkey1");
 		client.delete(params.writePolicy, key2);
 
@@ -123,6 +125,8 @@ public class AeroHelper {
 		console.info("Read/Write LinkedList<String>");
 		AerospikeClient client = acm.GetClient(id);
 		Parameters params = acm.GetParameters(id);
+		
+		
 		Key key2 = new Key(params.getNamespace(), params.getSet(), "listkey1");
 		client.delete(params.writePolicy, key2);
 
