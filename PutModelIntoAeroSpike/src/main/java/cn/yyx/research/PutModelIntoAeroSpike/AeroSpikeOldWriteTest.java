@@ -6,7 +6,7 @@ import cn.yyx.research.LMModelHandle.ModelIterator;
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.Parameters;
 
-public class AeroSpikeDataBaseReadWriteTest {
+public class AeroSpikeOldWriteTest {
 	public void StartPutIntoAeroSpike(String trainfilepath) throws Exception {
 		File f = new File(trainfilepath);
 		if (!f.exists()) {
@@ -22,7 +22,7 @@ public class AeroSpikeDataBaseReadWriteTest {
 		AeroHelper.ANewClient(1, param2);
 		Parameters param = new Parameters("127.0.0.1", 3000, null, null, "yyx", "code1sim");
 		AeroHelper.ANewClient(2, param);
-		AeroSpikeDataBaseReadWriteTest app = new AeroSpikeDataBaseReadWriteTest();
+		AeroSpikeOldWriteTest app = new AeroSpikeOldWriteTest();
 		
 		// real path:/home/yyx/HomeSpace/UnzipAllFiles/TransformedData/BigClassDetail/ClassWorkSpace/sorted-trainfile.lm
 		// test path:smaltest/test-trainfile.lm
