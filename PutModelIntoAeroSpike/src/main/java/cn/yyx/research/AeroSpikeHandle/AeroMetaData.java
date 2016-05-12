@@ -9,9 +9,9 @@ public class AeroMetaData {
 	// if -1, infinite.
 	public static final int MaxPutAllLineNum = -1;
 	// must > 0
-	public static final int MaxMethodSimilarNum = 50;
+	public static final int MaxMethodSimilarNum = 20;
 	
-	public static final int MaxBinNum = 50;
+	public static final int MaxBinNum = 20;
 	
 	// code1sim
 	public static final String BinSimilarName = "similar";
