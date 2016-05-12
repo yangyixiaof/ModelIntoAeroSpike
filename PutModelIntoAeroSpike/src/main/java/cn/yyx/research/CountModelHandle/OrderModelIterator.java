@@ -76,9 +76,8 @@ public class OrderModelIterator {
 		}
 		else
 		{
-			String afterkey = null;
-			afterkey = "";
-			for (int i=0;i<(order-1);i++)
+			String afterkey = ss[0];
+			for (int i=1;i<(order-1);i++)
 			{
 				afterkey += (" " + ss[i]);
 			}
