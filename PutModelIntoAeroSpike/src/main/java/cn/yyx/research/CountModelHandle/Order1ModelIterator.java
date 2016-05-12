@@ -92,7 +92,7 @@ public class Order1ModelIterator extends OrderModelIterator{
 			String mname = member.getVal();
 			similar.add(mname);
 		}
-		AeroHelper.PutIntoAero(2, key, new Bin(AeroMetaData.BinSimilarName, similar), similar.size());
+		AeroHelper.PutIntoAero(AeroMetaData.code1sim, key, new Bin(AeroMetaData.BinSimilarName, similar), similar.size());
 		queue.clear();
 	}
 	
