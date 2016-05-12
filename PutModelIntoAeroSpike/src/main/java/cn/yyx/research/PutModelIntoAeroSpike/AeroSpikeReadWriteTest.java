@@ -76,7 +76,7 @@ public class AeroSpikeReadWriteTest {
 		try {
 			app.StartPutCountModelIntoAeroSpike(2);
 			AerospikeClient ac = AeroHelper.GetClient(AeroMetaData.codengram);
-			Record record = ac.get(param2.policy, new Key(param.getNamespace(), param.getSet(), "DH@{"), AeroMetaData.BinPredictName, AeroMetaData.BinProbabilityName);
+			Record record = ac.get(param2.policy, new Key(param2.getNamespace(), param2.getSet(), "DH@{"), AeroMetaData.BinPredictName, AeroMetaData.BinProbabilityName);
 			System.out.println("record:" + record);
 		} catch (Exception e) {
 			e.printStackTrace();
