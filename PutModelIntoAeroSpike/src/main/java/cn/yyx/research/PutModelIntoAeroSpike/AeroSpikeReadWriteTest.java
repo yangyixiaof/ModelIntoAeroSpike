@@ -4,6 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+import com.aerospike.client.AerospikeClient;
+import com.aerospike.client.Key;
+import com.aerospike.client.Record;
+
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
 import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 import cn.yyx.research.AeroSpikeHandle.Parameters;
@@ -62,6 +66,9 @@ public class AeroSpikeReadWriteTest {
 		ModelSerialize app = new ModelSerialize();
 		try {
 			app.StartPutCountModelIntoAeroSpike(2);
+			AerospikeClient ac = AeroHelper.GetClient(AeroMetaData.codengram);
+			Record record = ac.get(param2.policy, new Key(param.getNamespace(), param.getSet(), "DH@{"), AeroMetaData.BinPredictName, AeroMetaData.BinProbabilityName);
+			System.out.println("record:" + record);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} catch (Error e) {

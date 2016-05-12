@@ -30,7 +30,7 @@ public class Parameters {
 	private String namespace;
 	private String set;
 	WritePolicy writePolicy;
-	Policy policy;
+	public Policy policy;
 	boolean singleBin;
 	
 	public Parameters(String host, int port, String user, String password, String namespace, String set) {

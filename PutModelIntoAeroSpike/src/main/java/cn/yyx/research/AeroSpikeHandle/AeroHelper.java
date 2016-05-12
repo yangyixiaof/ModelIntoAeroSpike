@@ -24,6 +24,11 @@ public class AeroHelper {
 		acm.ANewClient(id, param);
 	}
 	
+	public static AerospikeClient GetClient(Integer id)
+	{
+		return acm.GetClient(id);
+	}
+	
 	public static void CloseClient(Integer id)
 	{
 		acm.CloseClient(id);
