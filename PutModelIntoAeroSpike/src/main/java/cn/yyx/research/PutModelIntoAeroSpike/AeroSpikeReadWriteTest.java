@@ -67,6 +67,7 @@ public class AeroSpikeReadWriteTest {
 		try {
 			AeroHelper.testLinkedListStrings(AeroMetaData.codengram);
 		} catch (Exception e1) {
+			e1.printStackTrace(System.out);
 			e1.printStackTrace();
 			System.exit(1);
 		}
