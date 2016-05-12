@@ -125,7 +125,7 @@ public class AeroHelper {
 		console.info("Read/Write LinkedList<String>");
 		AerospikeClient client = acm.GetClient(id);
 		Parameters params = acm.GetParameters(id);
-		
+		params.writePolicy = null;
 		
 		Key key2 = new Key(params.getNamespace(), params.getSet(), "listkey1");
 		client.delete(params.writePolicy, key2);
