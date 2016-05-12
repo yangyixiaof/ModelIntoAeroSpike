@@ -45,7 +45,7 @@ public class OrderModelIterator {
 				key = DoGramWork(key, predict, prob, priorityQueue, ss);
 				
 				// debugging
-				System.out.println("current Handled aline:"+line);
+				System.out.println("order " + order + " current line:"+line);
 				// System.err.println("current Handled aline:"+line);
 				
 				if (AeroMetaData.MaxPutAllLineNum > 0)
