@@ -8,6 +8,7 @@ import cn.yyx.research.CountModelHandle.CountModelMetaInfo;
 import cn.yyx.research.CountModelHandle.Order1ModelIterator;
 import cn.yyx.research.CountModelHandle.OrderModelIterator;
 import cn.yyx.research.AeroSpikeHandle.AeroHelper;
+import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 import cn.yyx.research.AeroSpikeHandle.Parameters;
 
 /**
@@ -15,10 +16,6 @@ import cn.yyx.research.AeroSpikeHandle.Parameters;
  *
  */
 public class ModelSerialize {
-	
-	public static final int code1sim = 1;
-
-	public static final int codengram = 2;
 	
 	public void StartPutCountModelIntoAeroSpike(int order) throws Exception {
 		/*{
@@ -63,9 +60,9 @@ public class ModelSerialize {
 		// normal
 		// String ip = "192.168.1.100";
 		Parameters param = new Parameters(ip, 3000, null, null, "yyx", "code1sim");
-		AeroHelper.ANewClient(code1sim, param);
+		AeroHelper.ANewClient(AeroMetaData.code1sim, param);
 		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
-		AeroHelper.ANewClient(codengram, param2);
+		AeroHelper.ANewClient(AeroMetaData.codengram, param2);
 		ModelSerialize app = new ModelSerialize();
 		try {
 			app.StartPutCountModelIntoAeroSpike(5);
