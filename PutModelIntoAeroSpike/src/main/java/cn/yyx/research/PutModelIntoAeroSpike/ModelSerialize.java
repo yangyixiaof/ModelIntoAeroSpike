@@ -16,6 +16,10 @@ import cn.yyx.research.AeroSpikeHandle.Parameters;
  */
 public class ModelSerialize {
 	
+	public static final int code1sim = 1;
+
+	public static final int codengram = 2;
+	
 	public void StartPutCountModelIntoAeroSpike(int order) throws Exception {
 		/*{
 			// raw one sentence parse block.
@@ -58,10 +62,10 @@ public class ModelSerialize {
 		
 		// normal
 		// String ip = "192.168.1.100";
-		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
-		AeroHelper.ANewClient(1, param2);
 		Parameters param = new Parameters(ip, 3000, null, null, "yyx", "code1sim");
-		AeroHelper.ANewClient(2, param);
+		AeroHelper.ANewClient(code1sim, param);
+		Parameters param2 = new Parameters(ip, 3000, null, null, "yyx", "codengram");
+		AeroHelper.ANewClient(codengram, param2);
 		ModelSerialize app = new ModelSerialize();
 		try {
 			app.StartPutCountModelIntoAeroSpike(5);
