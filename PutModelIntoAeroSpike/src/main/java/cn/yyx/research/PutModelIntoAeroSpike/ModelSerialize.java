@@ -65,7 +65,7 @@ public class ModelSerialize {
 		AeroHelper.ANewClient(AeroMetaData.codengram, param2);
 		ModelSerialize app = new ModelSerialize();
 		try {
-			app.StartPutCountModelIntoAeroSpike(5);
+			app.StartPutCountModelIntoAeroSpike(8);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} catch (Error e) {
