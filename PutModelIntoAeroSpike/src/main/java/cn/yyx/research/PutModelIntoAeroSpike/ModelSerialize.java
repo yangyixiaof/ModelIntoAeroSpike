@@ -1,7 +1,10 @@
 package cn.yyx.research.PutModelIntoAeroSpike;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 import cn.yyx.research.CountModelHandle.CountModelMetaInfo;
@@ -53,8 +56,26 @@ public class ModelSerialize {
 	}
 
 	public static void main(String[] args) {
-		// testing
 		CountModelMetaInfo.finaldir = "/home/yyx/CodeComletionTestSpace/IR_yyx/BigClassDetail/ClassWorkSpace/results";
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String cmd = null;
+		try {
+			while ((cmd = br.readLine()) != null) {
+				if (cmd.startsWith("start "))
+				{
+					CountModelMetaInfo.finaldir = cmd.substring("start ".length());
+					break;
+				}
+				if (cmd.startsWith("default") || cmd.startsWith("dft"))
+				{
+					break;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		String ip = "127.0.0.1";
 		
 		// normal
