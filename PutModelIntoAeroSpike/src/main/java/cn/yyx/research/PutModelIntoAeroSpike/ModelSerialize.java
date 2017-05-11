@@ -56,6 +56,7 @@ public class ModelSerialize {
 	}
 
 	public static void main(String[] args) {
+		// /home/yyx/git/gitcrawler/programprocessor/BigDirectory/BigClassDetail/ClassWorkSpace/results
 		CountModelMetaInfo.finaldir = "/home/yyx/CodeComletionTestSpace/IR_yyx/BigClassDetail/ClassWorkSpace/results";
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
