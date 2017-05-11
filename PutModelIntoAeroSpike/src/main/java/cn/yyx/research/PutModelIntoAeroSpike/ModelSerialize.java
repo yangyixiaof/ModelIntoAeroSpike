@@ -71,9 +71,23 @@ public class ModelSerialize {
 				{
 					break;
 				}
+				if (cmd.startsWith("stop"))
+				{
+					try {
+						br.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					break;
+				}
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
+		}
+		try {
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		String ip = "127.0.0.1";
