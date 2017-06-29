@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import cn.yyx.contentassist.commonutils.ProbabilityComputer;
 import cn.yyx.research.AeroSpikeHandle.AeroMetaData;
 import cn.yyx.research.LMModelHandle.ModelQueueMember;
 
@@ -28,7 +27,7 @@ public class BinTrimer {
 		{
 			ModelQueueMember sp = sque.poll();
 			predict.add(sp.getVal());
-			prob.add(ProbabilityComputer.ComputeProbability(sp.getPriority()));
+			prob.add(ComputeProbability(sp.getPriority()));
 		}
 	}
 
@@ -50,6 +49,15 @@ public class BinTrimer {
 
 	public int Size() {
 		return predict.size();
+	}
+	
+	private double ComputeProbability(double probability)
+	{
+		if (probability <= 0.00001)
+		{
+			probability = 0.00001;
+		}
+		return Math.log(probability);
 	}
 	
 }
