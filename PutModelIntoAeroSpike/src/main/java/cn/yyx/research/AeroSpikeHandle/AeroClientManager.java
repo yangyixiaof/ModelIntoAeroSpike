@@ -58,9 +58,18 @@ public class AeroClientManager {
 				keys.add(k);
 			}
 		});
+		System.out.println("namespace:" + name_space + "#set:" + set_name + "#before_delete_record_num:" + keys.size());
 		for (Key key : keys) {
 			client.delete(client.getWritePolicyDefault(), key);
 		}
+		keys.clear();
+		client.scanAll(client.getScanPolicyDefault(), name_space, set_name, new ScanCallback() {
+			@Override
+			public void scanCallback(Key k, Record r) throws AerospikeException {
+				keys.add(k);
+			}
+		});
+		System.out.println("namespace:" + name_space + "#set:" + set_name + "#after_delete_record_num:" + keys.size());
 	}
 
 }
